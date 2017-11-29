@@ -15,12 +15,8 @@
   "[account] [minconf=1]
   If [account] is not specified, returns the server's total available balance.
   If [account] is specified, returns the balance in the account."
-  ([backend]
-   (getbalance backend "*"))
-  ([backend account]
-   (getbalance backend account 1))
-  ([backend account minconf]
-   (perform backend "getbalance" [account minconf])))
+  [backend & [account minconf]]
+  (perform backend "getbalance" [(or account "*") (or minconf 1)]))
 
 (defn getaccountaddress
   "<account>
