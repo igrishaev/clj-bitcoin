@@ -9,5 +9,6 @@
                  [cheshire "5.6.3"]
                  [org.clojure/tools.logging "0.3.1"]]
 
-  :profiles {:dev {:dependencies [[org.clojure/clojure "1.8.0"]]}
+  :profiles {:dev {:dependencies [[org.clojure/clojure "1.8.0"]
+                                  [log4j/log4j "1.2.17"]]}
              :uberjar {:aot :all}})
