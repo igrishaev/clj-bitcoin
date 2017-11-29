@@ -1,36 +1,36 @@
-# bitcoin
+# Bitcoin
 
-FIXME: description
+[api-wiki]:https://en.bitcoin.it/wiki/Original_Bitcoin_client/API_calls_list
+
+A Clojure wrapper upon the original C++ Bitcoin client. Implements [JSON-RPC
+APIs][api-wiki] for the server.
 
 ## Installation
 
-Download from http://example.com/FIXME.
+Add `[bitcoin "0.1.0-SNAPSHOT"]` to your dependencies.
 
 ## Usage
 
-FIXME: explanation
+```clojure
 
-    $ java -jar bitcoin-0.1.0-standalone.jar [args]
+(def config {:host "127.0.0.1" :port 8332 :user "ivan" :pass "123"})
 
-## Options
+(getbalance config "ivan")
+0.0
 
-FIXME: listing of options this app accepts.
+(getaccountaddress config "ivan")
+1DiYHeMaZaX2aJpJ92J19gk3uar1KVDzGh
 
-## Examples
+(getaddressesbyaccount config "ivan")
+["1DiYHeMaZaX2aJpJ92J19gk3uar1KVDzGh"]
 
-...
-
-### Bugs
-
-...
-
-### Any Other Sections
-### That You Think
-### Might be Useful
+```
 
 ## License
 
-Copyright © 2017 FIXME
+[homepage]:http://grishaev.me/
+
+Copyright © 2017 [Ivan Grishaev][homepage].
 
 Distributed under the Eclipse Public License either version 1.0 or (at
 your option) any later version.

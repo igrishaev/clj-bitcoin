@@ -1,6 +1,7 @@
 (defproject bitcoin "0.1.0-SNAPSHOT"
-  :description "FIXME: write description"
-  :url "http://example.com/FIXME"
+  :description "Clojure bindings to the standard Bitcoin client."
+  :url "https://github.com/igrishaev/clj-bitcoin"
+
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
 
