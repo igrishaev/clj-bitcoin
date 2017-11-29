@@ -12,6 +12,7 @@ Add `[bitcoin "0.1.0-SNAPSHOT"]` to your dependencies.
 ## Usage
 
 ```clojure
+(use 'bitcoin.api)
 
 (def server (json-rpc "127.0.0.1" 8332 "ivan" "123"))
 
