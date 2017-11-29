@@ -13,15 +13,15 @@ Add `[bitcoin "0.1.0-SNAPSHOT"]` to your dependencies.
 
 ```clojure
 
-(def config {:host "127.0.0.1" :port 8332 :user "ivan" :pass "123"})
+(def server (json-rpc "127.0.0.1" 8332 "ivan" "123"))
 
-(getbalance config "ivan")
+(getbalance server "ivan")
 0.0
 
-(getaccountaddress config "ivan")
+(getaccountaddress server "ivan")
 1DiYHeMaZaX2aJpJ92J19gk3uar1KVDzGh
 
-(getaddressesbyaccount config "ivan")
+(getaddressesbyaccount server "ivan")
 ["1DiYHeMaZaX2aJpJ92J19gk3uar1KVDzGh"]
 
 ```
