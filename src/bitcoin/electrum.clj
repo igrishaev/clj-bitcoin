@@ -1,12 +1,7 @@
 (ns bitcoin.electrum
-  (:require [bitcoin.backend :refer [perform]]
+  (:require [bitcoin.api :refer [defapi]]
+            [bitcoin.backend :refer [perform]]
             [bitcoin.json-rpc :refer [json-rpc]]))
-
-(defmacro defapi
-  [api doc args]
-  `(defn ~api ~doc
-     [~'rpc & [{:keys ~args :as ~'params}]] ;; too fix empty args
-     (perform ~'rpc ~(name api) (or ~'params {}))))
 
 (defapi getbalance
   "Return the balance of your wallet."
