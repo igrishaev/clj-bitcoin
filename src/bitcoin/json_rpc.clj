@@ -27,12 +27,15 @@
                   :as :json}
           _ (log/debugf "JSON-RPC request: %s %s" url payload)
           response (client/request params)
-          {:keys [status body]} response]
+          {:keys [status body]} response
+          body (if (= status 200)
+                 body
+                 (parse-string body true))]
 
-      (if (= status 200)
+      (if (and (= status 200)
+               (-> body :error empty?))
         (:result body)
-        (let [body (parse-string body true)
-              {:keys [code message]} (:error body)
+        (let [{:keys [code message]} (:error body)
               exc-message (format "JSON-RPC failure: %s %s %s %s %s %s"
                                   status url method args code message)
               _ (log/error exc-message)]
