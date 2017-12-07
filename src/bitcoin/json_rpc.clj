@@ -10,14 +10,14 @@
 
   IBackend
 
-  (perform [_ method params]
+  (perform [_ method args]
     (let [schema (if secure "https" "http")
           url (format "%s://%s:%s/" schema host port)
           auth (when (and user pass) [user pass])
           payload {:jsonrpc version
                    :id id
                    :method method
-                   :params params}
+                   :params args}
           params {:method :post
                   :url url
                   :basic-auth auth
@@ -34,7 +34,7 @@
         (let [body (parse-string body true)
               {:keys [code message]} (:error body)
               exc-message (format "JSON-RPC failure: %s %s %s %s %s %s"
-                                  status url method params code message)
+                                  status url method args code message)
               _ (log/error exc-message)]
           (throw (Exception. exc-message)))))))
 

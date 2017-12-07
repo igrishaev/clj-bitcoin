@@ -5,7 +5,7 @@
 (defmacro defapi
   [api doc args]
   `(defn ~api ~doc
-     [~'rpc & {:keys ~args :as ~'params}]
+     [~'rpc & [{:keys ~args :as ~'params}]]
      (perform ~'rpc ~(name api) ~'params)))
 
 (defapi getbalance
