@@ -1,6 +1,6 @@
 # Bitcoin
 
-[api-wiki]:https://en.bitcoin.it/wiki/Original_Bitcoin_client/API_calls_list
+[api-wiki]:https://bitcoin.org/en/developer-reference#rpcs
 
 A Clojure wrapper upon the original C++ Bitcoin client. Implements [JSON-RPC
 APIs][api-wiki] for the server.
