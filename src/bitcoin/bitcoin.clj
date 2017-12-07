@@ -17,32 +17,13 @@ Note that the account '' is not the same as leaving the parameter out.
 The server total may be different to the balance in the default '' account."
   [account minconf include_watchonly])
 
-#_(defapi getbalance
-  "sdfsdf"
-  [account minconf])
+(defapi getnewaddress
+  "Returns a new address for account (if passed)."
+  [account])
 
-#_(defn getbalance
-  "tests"
-  [rpc & {:keys [account minconf] :as params}]
-  (perform "getbalance" params))
+(defapi listtransactions
+  "listtransactions ( 'account' count skip include_watchonly)
 
-#_(defn getbalance
-  "[account] [minconf=1]
-  If [account] is not specified, returns the server's total available balance.
-  If [account] is specified, returns the balance in the account."
-  [backend & [account minconf]]
-  (perform backend "getbalance" [(or account "*") (or minconf 1)]))
-
-#_(defn getaccountaddress
-  "<account>
-  Returns the current bitcoin address for receiving payments
-  to this account. If <account> does not exist, it will be created
-  along with an associated new address that will be returned."
-  [backend account]
-  (perform backend "getaccountaddress" [account]))
-
-#_(defn getaddressesbyaccount
-  "<account>
-  Returns the list of addresses for the given account."
-  [backend account]
-  (perform backend "getaddressesbyaccount" [account]))
+Returns up to 'count' most recent transactions skipping the first
+'from' transactions for account 'account'."
+  [account count skip include_watchonly])
