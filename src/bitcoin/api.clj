@@ -2,15 +2,6 @@
   (:require [bitcoin.backend :refer [perform]]
             [bitcoin.json-rpc :refer [map->JSON-RPC]]))
 
-(defn json-rpc
-  [host port user pass & {:as opt}]
-  (map->JSON-RPC
-   (merge {:host host
-           :port port
-           :user user
-           :pass pass}
-          opt)))
-
 (defn getbalance
   "[account] [minconf=1]
   If [account] is not specified, returns the server's total available balance.

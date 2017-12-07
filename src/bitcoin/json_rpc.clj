@@ -6,19 +6,21 @@
   (:import bitcoin.backend.IBackend))
 
 (defrecord JSON-RPC
-    [host port user pass id timeout]
+    [port host user pass secure version timeout id]
 
   IBackend
 
-  (perform [_ method args]
-    (let [url (format "http://%s:%s/" host port)
-          payload {:jsonrpc "1.0"
-                   :id (or id "bitcoin.json-rpc") ;; todo
+  (perform [_ method params]
+    (let [schema (if secure "https" "http")
+          url (format "%s://%s:%s/" schema host port)
+          auth (when (and user pass) [user pass])
+          payload {:jsonrpc version
+                   :id id
                    :method method
-                   :params args}
+                   :params params}
           params {:method :post
                   :url url
-                  :basic-auth [user pass]
+                  :basic-auth auth
                   :form-params payload
                   :throw-exceptions false
                   :content-type :json
@@ -32,6 +34,18 @@
         (let [body (parse-string body true)
               {:keys [code message]} (:error body)
               exc-message (format "JSON-RPC failure: %s %s %s %s %s %s"
-                                  status url method args code message)
+                                  status url method params code message)
               _ (log/error exc-message)]
           (throw (Exception. exc-message)))))))
+
+(defn json-rpc
+  [port & [{:keys [host user pass secure version timeout id] :as opt}]]
+  (map->JSON-RPC
+   {:host (or host "127.0.0.1")
+    :port port
+    :user user
+    :pass pass
+    :timeout (or timeout 5)
+    :secure (or secure false)
+    :version (or version "1.0")
+    :id (or id "clojure-bitcoin")}))
