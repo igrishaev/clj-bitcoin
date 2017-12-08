@@ -35,3 +35,10 @@ Copyright © 2017 [Ivan Grishaev][homepage].
 
 Distributed under the Eclipse Public License either version 1.0 or (at
 your option) any later version.
+
+
+## Misc
+
+This library was developed during live [coding session][stream-1] on YouTube.
+
+[stream-1]:https://www.youtube.com/watch?v=JtKmeTZNT7w
